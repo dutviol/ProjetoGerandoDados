@@ -1,0 +1,19 @@
+import json
+
+from country_codes import get_country_code
+
+# Carregar os dados em uma lista
+filename = 'arquivos/population_data.json'
+
+with open(filename) as f:
+    pop_data = json.load(f)
+    
+# Exibe população de cada país em 2010
+for pop_dict in pop_data:
+    if pop_dict['Year'] == '2010':
+        country_name = pop_dict['Country Name']
+        population = int(float(pop_dict['Value']))
+        code = get_country_code(country_name)
+        if code == None:
+            code = ""
+        print(code+ " " + country_name + ": "+ str(population))    
